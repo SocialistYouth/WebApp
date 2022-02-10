@@ -13,11 +13,12 @@ class WeGameMenu {
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-settings">
-            设置
+            退出
         </div>
     </div>
 </div>
 `);
+        this.$menu.hide();
         this.root.$ac_game.append(this.$menu);
         this.$single = this.$menu.find('.ac-game-menu-field-single');
         this.$multi = this.$menu.find('.ac-game-menu-field-multi');
@@ -41,6 +42,7 @@ class WeGameMenu {
         });
         this.$settings.click(function() {
             console.log("click settings");
+            outer.root.settings.logout_on_remote();
         });
     }
 

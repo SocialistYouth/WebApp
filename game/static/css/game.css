@@ -1,3 +1,114 @@
+.ac-game-settings{
+    width:100%;
+    height:100%;
+    background-image: url("/static/image/menu/backgroud.jpg");
+    background-size: 100% 100%;
+    user-select: none;
+}
+.ac-game-settings-login{
+    height:49vh;
+    width:21vw;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color:rgba(0,0,0,0.7);
+    border-radius:5px;
+
+}
+.ac-game-settings-register{
+    height:50vh;
+    width:21vw;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color:rgba(0,0,0,0.7);
+}
+.ac-game-settings-title{
+    color: white;
+    font-size: 4vh;
+    text-align: center;
+    height:7vh;
+    padding-top:2vh;
+    margin-bottem:2vh;
+}
+.ac-game-settings-username{
+    display:block;
+    height:7vh;
+}
+.ac-game-settings-password{
+    display:block;
+    height:7vh;
+}
+.ac-game-settings-submit{
+    display:block;
+    height:7vh;
+}
+.ac-game-settings-item{
+    width:100%;
+    height:100%;
+}
+.ac-game-settings-item > input{
+    width:90%;
+    line-height:3vh;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+.ac-game-settings-item > button {
+    color:white;
+    width:90%;
+    line-height:5vh;
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background-color:#4CAF50;
+    border-radius:5px;
+    cursor: pointer;
+}
+.ac-game-settings-error-messages{
+    color:red;
+    font-size:0.7vh;
+    display:inline;
+    float:left;
+    padding-left:1vw;
+}
+.ac-game-settings-option{
+    color:white;
+    font-size:1.5vh;
+    display:inline;
+    float:right;
+    padding-right:1vw;
+    cursor: pointer;
+}
+.ac-game-settings-Thirdparty-login{
+    display:block;
+    height:7vh;
+}
+.ac-game-settings-Thirdparty-login-qq{
+    position:relative;
+    top:50%;
+    left:35%;
+    transform:translate(-50%,-50%);
+    cursor: pointer;
+}
+.ac-game-settings-Thirdparty-login-wechat{
+    position:relative;
+    top:50%;
+    left:55%;
+    transform:translate(-50%,-50%);
+    cursor: pointer;
+}
+.ac-game-settings-Thirdparty-login > pre {
+    color:white;
+    position:relative;
+    font-size:0.7vw;
+    padding-left:6vw;
+}
+
 .ac-game-menu{
     width:100%;
     height:100%;
