@@ -91,22 +91,30 @@
 .ac-game-settings-Thirdparty-login-qq{
     position:relative;
     top:50%;
-    left:35%;
+    left:22%;
     transform:translate(-50%,-50%);
     cursor: pointer;
 }
 .ac-game-settings-Thirdparty-login-wechat{
     position:relative;
     top:50%;
-    left:55%;
+    left:37%;
+    transform:translate(-50%,-50%);
+    cursor: pointer;
+}
+.ac-game-settings-Thirdparty-login-github{
+    position:relative;
+    top:50%;
+    left:52%;
     transform:translate(-50%,-50%);
     cursor: pointer;
 }
 .ac-game-settings-Thirdparty-login > pre {
+    font-family: emoji;
     color:white;
     position:relative;
     font-size:0.7vw;
-    padding-left:6vw;
+    padding-left:3vw;
 }
 
 .ac-game-menu{

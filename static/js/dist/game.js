@@ -472,8 +472,9 @@ class Settings {
         <div class="ac-game-settings-Thirdparty-login">
             <img width="30" class="ac-game-settings-Thirdparty-login-qq" src="https://app1236.acapp.acwing.com.cn/static/image/settings/qq_login.png">
             <img width="30" class="ac-game-settings-Thirdparty-login-wechat" src="https://app1236.acapp.acwing.com.cn/static/image/settings/wechat_login.png">
+            <img width="30" class="ac-game-settings-Thirdparty-login-github" src="https://app1236.acapp.acwing.com.cn/static/image/settings/github_login.png">
             <br>
-            <pre>QQ登录        微信登录</pre>
+            <pre>QQ登录        微信登录      github登录</pre>
         </div>
     </div>
     <div class="ac-game-settings-register">
@@ -527,6 +528,8 @@ class Settings {
         this.$register_error_messages = this.$register.find(".ac-game-settings-error-messages");
 
         this.$register.hide();
+
+        this.$login_github = this.$settings.find(".ac-game-settings-Thirdparty-login-github");
         
         this.root.$ac_game.append(this.$settings);
         this.start();
@@ -537,8 +540,26 @@ class Settings {
     }
 
     add_listening_events() {
+        let outer = this;
         this.add_listening_events_login();
         this.add_listening_events_register();
+
+        this.$login_github.click(function(){
+            outer.login_github();
+        });
+    }
+
+    login_github() {
+        $.ajax({
+            url:"https://app1236.acapp.acwing.com.cn/settings/github/apply_code/",
+            type:"GET",
+            success:function(resp) {
+                if(resp.result === "success") {
+                    window.location.replace(resp.apply_code_url);
+                }
+            }
+
+        });
     }
     add_listening_events_login() {
         let outer = this;
