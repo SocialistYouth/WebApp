@@ -12,7 +12,7 @@ class Particle extends AcGameObject {
         this.speed = speed;
         this.move_length = move_length;
         this.friction = 0.9;
-        this.eps = 1;
+        this.eps = 0.01;
     }
     start() {
     }
@@ -31,7 +31,7 @@ class Particle extends AcGameObject {
 
     render() {
         this.ctx.beginPath();
-        this.ctx.arc(this.x,this.y,this.radius,0,Math.PI * 2,false);
+        this.ctx.arc(this.x*this.playground.scale,this.y*this.playground.scale,this.radius*this.playground.scale,0,Math.PI * 2,false);
         this.ctx.fillstyle = this.color;
         this.ctx.fill();
     }

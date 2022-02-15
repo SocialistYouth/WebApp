@@ -9,7 +9,7 @@ class WeGameMenu {
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-multi">
-            多人模式
+            冰墩墩
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-settings">

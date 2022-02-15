@@ -1,3 +1,18 @@
+.ac-game-attention {
+    position:relative;
+    top:10%;
+    left:65%;
+    height: 7vh;
+    width: 30vw;
+    color: white;
+    font-size: 6vh;
+    font-style: italic;
+    text-align: center;
+    background-color: rgba(39,21,28,0.6);
+    border-radius:10px;
+    letter-spacing:0.5vw;
+}
+
 .ac-game-settings{
     width:100%;
     height:100%;
@@ -91,21 +106,14 @@
 .ac-game-settings-Thirdparty-login-qq{
     position:relative;
     top:50%;
-    left:22%;
-    transform:translate(-50%,-50%);
-    cursor: pointer;
-}
-.ac-game-settings-Thirdparty-login-wechat{
-    position:relative;
-    top:50%;
-    left:37%;
+    left:35%;
     transform:translate(-50%,-50%);
     cursor: pointer;
 }
 .ac-game-settings-Thirdparty-login-github{
     position:relative;
     top:50%;
-    left:52%;
+    left:55%;
     transform:translate(-50%,-50%);
     cursor: pointer;
 }
@@ -114,7 +122,7 @@
     color:white;
     position:relative;
     font-size:0.7vw;
-    padding-left:3vw;
+    padding-left:5.5vw;
 }
 
 .ac-game-menu{
@@ -154,4 +162,11 @@
     width: 100%;
     height: 100%;
     user-select: none;
+    background-color:grey;
+}
+.ac-game-playground > canvas {
+    position:relative;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 }
