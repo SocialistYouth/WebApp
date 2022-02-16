@@ -37,8 +37,10 @@ class Settings {
         <div class="ac-game-settings-Thirdparty-login">
             <img width="30" class="ac-game-settings-Thirdparty-login-qq" src="https://app1236.acapp.acwing.com.cn/static/image/settings/qq_login.png">
             <img width="30" class="ac-game-settings-Thirdparty-login-github" src="https://app1236.acapp.acwing.com.cn/static/image/settings/github_login.png">
+            <img width="30" class="ac-game-settings-Thirdparty-login-acwing" src="https://app1236.acapp.acwing.com.cn/static/image/settings/acwing_login.png">
+
             <br>
-            <pre>QQ登录            GitHub登录</pre>
+            <pre>QQ登录         GitHub登录      AcWing登录</pre>
         </div>
     </div>
     <div class="ac-game-settings-register">
@@ -93,6 +95,7 @@ class Settings {
 
         this.$register.hide();
 
+        this.$login_acwing = this.$settings.find(".ac-game-settings-Thirdparty-login-acwing");
         this.$login_github = this.$settings.find(".ac-game-settings-Thirdparty-login-github");
         this.$login_qq = this.$settings.find(".ac-game-settings-Thirdparty-login-qq");
         
@@ -115,11 +118,26 @@ class Settings {
         this.$login_qq.click(function(){
             outer.login_qq();
         });
+        this.$login_acwing.click(function(){
+            outer.login_acwing();
+        });
     }
 
     login_qq() {
         $.ajax({
             url:"https://app1236.acapp.acwing.com.cn/settings/qq/apply_code/",
+            type:"GET",
+            success:function(resp){
+                if(resp.result  ==="success") {
+                    window.location.replace(resp.apply_code_url);
+                }
+            }
+        });
+    }
+
+    login_acwing() {
+        $.ajax({
+            url:"https://app1236.acapp.acwing.com.cn/settings/acwing/apply_code/",
             type:"GET",
             success:function(resp){
                 if(resp.result  ==="success") {

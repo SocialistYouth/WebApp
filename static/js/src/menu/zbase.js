@@ -9,7 +9,7 @@ class WeGameMenu {
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-multi">
-            冰墩墩
+            多人模式
         </div>
         <br>
         <div class="ac-game-menu-field-item ac-game-menu-field-settings">
@@ -35,13 +35,13 @@ class WeGameMenu {
         let outer = this;
         this.$single.click(function() {
             outer.hide();
-            outer.root.playground.show();
+            outer.root.playground.show("single mode");
         });
         this.$multi.click(function() {
-            console.log("click multi");
+            outer.hide();
+            outer.root.playground.show("multi mode");
         });
         this.$settings.click(function() {
-            console.log("click settings");
             outer.root.settings.logout_on_remote();
         });
     }
