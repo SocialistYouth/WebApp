@@ -82,7 +82,7 @@ class Settings {
         this.$login_submit = this.$login.find(".ac-game-settings-submit button");
         this.$login_error_messages = this.$login.find(".ac-game-settings-error-messages");
         this.$login_option = this.$login.find(".ac-game-settings-option");
-        
+
         this.$login.hide();
 
         this.$register = this.$settings.find(".ac-game-settings-register");
@@ -98,7 +98,7 @@ class Settings {
         this.$login_acwing = this.$settings.find(".ac-game-settings-Thirdparty-login-acwing");
         this.$login_github = this.$settings.find(".ac-game-settings-Thirdparty-login-github");
         this.$login_qq = this.$settings.find(".ac-game-settings-Thirdparty-login-qq");
-        
+
         this.root.$ac_game.append(this.$settings);
         this.start();
     }
@@ -192,7 +192,6 @@ class Settings {
                 password:password,
             },
             success:function(resp){
-                console.log(resp);
                 if(resp.result === "success"){
                     location.reload();
                 } else {
@@ -218,7 +217,6 @@ class Settings {
                 Confirm_password: Confirm_password,
             },
             success:function(resp){
-                console.log(resp);
                 if(resp.result === "success"){
                     location.reload();
                 } else {
@@ -229,18 +227,21 @@ class Settings {
     }
 
     logout_on_remote() { //在远程服务器上登出
-        if (this.platform === "ACAPP") return false;
-        let outer = this;
-        $.ajax({
-            url:"https://app1236.acapp.acwing.com.cn/settings/logout/",
-            type:"GET",
-            success:function(resp){
-                console.log(resp);
-                if(resp.result === "success"){
-                    location.reload();
+        if (this.platform === "ACAPP") {
+            this.root.AcWingOS.api.window.close();
+        } else {
+            let outer = this;
+            $.ajax({
+                url:"https://app1236.acapp.acwing.com.cn/settings/logout/",
+                type:"GET",
+                success:function(resp){
+                    if(resp.result === "success"){
+                        location.reload();
+                    }
                 }
-            }
-        });
+            });
+        }
+
     }
 
     register() { //打开注册界面
@@ -252,7 +253,7 @@ class Settings {
         this.$login.show();
     }
     getinfo(){
-    let outer = this;
+        let outer = this;
         $.ajax({
             url: "https://app1236.acapp.acwing.com.cn/settings/getinfo/",
             type: "GET",
@@ -260,7 +261,6 @@ class Settings {
                 platform:outer.platform,
             },
             success: function(resp) {
-                console.log(resp);
                 if (resp.result === "success") {
                     outer.username = resp.username;
                     outer.photo = resp.photo;
