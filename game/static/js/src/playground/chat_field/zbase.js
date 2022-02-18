@@ -1,6 +1,8 @@
 class ChatField {
-    constructor(playground) {
+    constructor(playground,me) {
         this.playground = playground;
+
+        this.me = me;
 
         this.$history = $(`<div class="ac-game-chat-field-history">聊天记录</div>`);
         this.$input = $(`<input type="text" class="ac-game-chat-field-input">`);
@@ -51,7 +53,11 @@ class ChatField {
     }
 
     add_message(username, text) {
-        this.show_history();
+        if (this.me) {
+            this.always_show_history();
+        } else {
+            this.show_history();
+        }
         let message = `[${username}]${text}`;
         this.$history.append(this.render_message(message));
         this.$history.scrollTop(this.$history[0].scrollHeight);

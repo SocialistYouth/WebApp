@@ -162,8 +162,7 @@ class MultiPlayerSocket {
     }
 
     receive_message(uuid,username,text) {
-        let player = this.get_player(uuid);
-        player.playground.chat_field.add_message(username,text);
+        this.playground.chat_field.add_message(username,text);
     }
 
 }

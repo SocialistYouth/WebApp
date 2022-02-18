@@ -116,8 +116,10 @@ let AC_GAME_ANIMATION = function(timestamp) {
 
 requestAnimationFrame(AC_GAME_ANIMATION);
 class ChatField {
-    constructor(playground) {
+    constructor(playground,me) {
         this.playground = playground;
+
+        this.me = me;
 
         this.$history = $(`<div class="ac-game-chat-field-history">聊天记录</div>`);
         this.$input = $(`<input type="text" class="ac-game-chat-field-input">`);
@@ -168,7 +170,11 @@ class ChatField {
     }
 
     add_message(username, text) {
-        this.show_history();
+        if (this.me) {
+            this.always_show_history();
+        } else {
+            this.show_history();
+        }
         let message = `[${username}]${text}`;
         this.$history.append(this.render_message(message));
         this.$history.scrollTop(this.$history[0].scrollHeight);
@@ -915,8 +921,7 @@ class MultiPlayerSocket {
     }
 
     receive_message(uuid,username,text) {
-        let player = this.get_player(uuid);
-        player.playground.chat_field.add_message(username,text);
+        this.playground.chat_field.add_message(username,text);
     }
 
 }
@@ -974,14 +979,15 @@ class WeGamePlayground {
         this.resize();
 
         this.players = [];
-        this.players.push(new Player(this, this.width / 2 / this.scale, 0.5, 0.05, "white", 0.15, "me", this.root.settings.username, this.root.settings.photo));
+        let me = new Player(this, this.width / 2 / this.scale, 0.5, 0.05, "white", 0.15, "me", this.root.settings.username, this.root.settings.photo);
+        this.players.push(me);
         
         if (mode === "single mode") {
             for (let i = 0; i < 5; i ++ ) {
                 this.players.push(new Player(this, this.width / 2 / this.scale, 0.5, 0.05, this.get_random_color(), 0.15, "robot"));
             }
         } else if (mode === "multi mode") {
-            this.chat_field = new ChatField(this);
+            this.chat_field = new ChatField(this,me);
             this.mps = new MultiPlayerSocket(this);
             this.mps.uuid = this.players[0].uuid;
             this.mps.ws.onopen = function() {
