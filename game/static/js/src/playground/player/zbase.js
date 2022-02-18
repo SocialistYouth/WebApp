@@ -66,9 +66,9 @@ class Player extends AcGameObject {
         this.playground.game_map.$canvas.on("contextmenu",function() {
             return false;
         });
-        this.playground.game_map.$canvas.mousedown(function(e) {
+        this.playground.game_map.$canvas.mousedown(function(e) {  //canvas鼠标输入事件
             if (outer.playground.state !== "fighting")
-                return false;
+                return true;
 
             const rect = outer.ctx.canvas.getBoundingClientRect();
             if (e.which === 3) {
@@ -107,8 +107,21 @@ class Player extends AcGameObject {
                 outer.cur_skill = null;
             }
         });
-        $(window).keydown(function(e) {
-             if (outer.playground.state !== "fighting")
+        this.playground.game_map.$canvas.keydown(function(e) {  //canvas键盘输入事件
+            // console.log(e.which); ->Enter回车键是13；Space空格键是32；Esc退出键是27
+
+            if (e.which === 13) { // 按Enter键
+                if (outer.playground.mode === "multi mode") { //打开聊天框
+                    outer.playground.chat_field.show_input();
+                    return false;
+                }
+            } else if (e.which === 27) { //按Esc键
+                if(outer.playground.mode === "multi mode") { //关闭聊天框
+                    outer.playground.chat_field.hide_input();
+                }
+            }
+
+            if (outer.playground.state !== "fighting")
                 return true;
 
             if(e.which === 81) { //q键
