@@ -11,7 +11,7 @@ def get_state():
 
 def apply_code(request):
     appid = "101995984"
-    redirect_uri = quote("https://app1236.acapp.acwing.com.cn/settings/qq/receive_code/")
+    redirect_uri = quote("https://app1236.acapp.acwing.com.cn/settings/qq/receive_code")
     response_type = "code"
     state = get_state()
     

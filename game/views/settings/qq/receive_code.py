@@ -19,21 +19,24 @@ def receive_code(request):
     client_id = "101995984"
     client_secret = "0d09c12f39629d64b3fde043a960cc31"
 
-    apply_access_token_url = "https://graph.qq.com/oauth2.0/token/"
+    apply_access_token_url = "https://graph.qq.com/oauth2.0/token"
     params = {
         'grant_type':"authorization_code",
         'client_id': client_id,
         'client_secret': client_secret,
         'code': code,
-        'redirect_uri':"https://app1236.acapp.acwing.com.cn/settings/qq/receive_code/"
+        'redirect_uri':"https://app1236.acapp.acwing.com.cn/settings/qq/receive_code",
+        'fmt':"json"
     }
  
     access_token_res = requests.get(apply_access_token_url, params=params).json()
+    # access_token = access_token_res.split('&')[0]
     access_token = access_token_res["access_token"]
 
     openid_url = "https://graph.qq.com/oauth2.0/me"
     params = {
-        "access_token": access_token
+        "access_token": access_token,
+        'fmt':"json"
     }
     openid_res = requests.get(openid_url,params=params).json()
     openid = openid_res["openid"]
@@ -43,13 +46,13 @@ def receive_code(request):
         login(request, players[0].user)
         return redirect("index")
 
-    get_userinfo_url = "https://graph.qq.com/user/get_user_info/"
+    get_userinfo_url = "https://graph.qq.com/user/get_user_info"
     params = {
         "access_token": access_token,
         "oauth_consumer_key":"101995984",
         "openid": openid
     }
-    userinfo_res = requests.get(get_userinfo_url, params=params)
+    userinfo_res = requests.get(get_userinfo_url, params=params).json()
     username = userinfo_res['nickname']
     photo = userinfo_res['figureurl_qq_1']
 
