@@ -7,7 +7,6 @@ class Settings {
         this.photo = "";
         this.$settings = $(`
 <div class="ac-game-settings">
-    <div class="ac-game-attention">QQ登录尚未审核</div>
     <div class="ac-game-settings-login">
         <div class="ac-game-settings-title">
             登录
