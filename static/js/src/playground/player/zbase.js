@@ -192,6 +192,9 @@ class Player extends AcGameObject {
 
     update() {
         this.spent_time += this.timedelta/1000;
+
+        this.update_win();
+
         if (this.character === "me" && this.playground.state === "fighting") {
             this.update_coldtime();
         }
@@ -199,6 +202,13 @@ class Player extends AcGameObject {
         this.update_move();
 
         this.render();
+    }
+
+    update_win() { //判断自己是否获胜
+        if(this.playground.state === "fighting" && this.character === "me" && this.playground.players.length === 1) {
+            this.playground.state = "over";
+            this.playground.score_board.win();
+        }
     }
 
     update_coldtime() { //更新技能冷却时间
@@ -292,9 +302,12 @@ class Player extends AcGameObject {
 
 
     on_destroy() {
-        if (this.character === "me")
-            this.playground.state = "over";
- 
+        if (this.character === "me") {
+            if (this.playground.state === "fighting") {
+                this.playground.state = "over";
+                this.playground.score_board.lose();
+            }
+        }
         for (let i = 0; i < this.playground.players.length; i ++ ) {
             if (this.playground.players[i] === this) {
                 this.playground.players.splice(i, 1);
