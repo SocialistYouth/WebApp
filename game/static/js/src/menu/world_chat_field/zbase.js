@@ -3,7 +3,7 @@ class World_ChatField {
         this.menu = menu;
 
         this.$title = $(`<div class="ac-game-world-chat-field-title">世界之窗</div>`);
-        this.$history = $(`<div class="ac-game-world-chat-field-history">暂时存在通讯异常，不定期维护</div>`);
+        this.$history = $(`<div class="ac-game-world-chat-field-history">暂时存在通讯异常</div>`);
         this.$input = $(`<input type="text" class="ac-game-world-chat-field-input">`);
 
 
