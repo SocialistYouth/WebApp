@@ -146,7 +146,7 @@
     width: 20vw;
     position: relative;
     top: 40%;
-    left: 50%;
+    left: 38%;
 }
 .ac-game-menu-field-item {
     height: 7vh;
@@ -218,3 +218,41 @@
     background-color: rgba(222,225,230, 0.2);
 }
 
+
+.ac-game-world-chat-field-title {
+    position: absolute;
+    top: 20%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 2%;
+    font-size: 3vh;
+    font-style: border;
+    color: white;
+    text-align: center;
+}
+.ac-game-world-chat-field-history {
+    position: absolute;
+    top: 40%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 32%;
+    color: white;
+    font-size: 2vh;
+    background-color: rgba(0,0,0, 0.3);
+    padding: 5px;
+    overflow: auto;
+}
+
+.ac-game-world-chat-field-input {
+    position: absolute;
+    top: 60%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 3vh;
+    color: white;
+    font-size: 2vh;
+    background-color: rgba(0,0,0, 0.3);
+}

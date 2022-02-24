@@ -53,8 +53,12 @@ class ScoreBoard extends AcGameObject {
         let len = this.playground.height / 2;
         if(this.state === "win" ) {
             this.ctx.drawImage(this.win_img, this.playground.width/2 - len/2, this.playground.height/2 - len/2, len, len);
+            this.ctx.fillStyle = "white";
+            this.ctx.fillText("左键返回主界面",this.playground.width*0.5,this.playground.height*0.75);
         } else if (this.state === "lose" ) {
             this.ctx.drawImage(this.lose_img, this.playground.width/2 - len/2, this.playground.height/2 - len/2, len, len);
+            this.ctx.fillStyle = "white";
+            this.ctx.fillText("左键返回主界面",this.playground.width*0.5,this.playground.height*0.75);
         }
     }
 }

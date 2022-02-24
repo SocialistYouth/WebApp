@@ -35,7 +35,7 @@ class Player extends AcGameObject {
         if (this.character === "me") {
             this.fireball_coldtime = 3; //冷却时间3s
             this.fireball_img = new Image();
-            this.fireball_img.src = "https://cdn.acwing.com/media/article/image/2021/12/02/1_9340c86053-fireball.png";
+            this.fireball_img.src = "https://exp-picture.cdn.bcebos.com/a1780d1fceecd3d9a02a317767995943050108f7.jpg?x-bce-process=image%2Fformat%2Cf_jpg%2Fquality%2Cq_80";
 
             this.blink_coldtime = 5;  // 单位：秒
             this.blink_img = new Image();
@@ -147,7 +147,7 @@ class Player extends AcGameObject {
         let angle = Math.atan2(ty - this.y,tx - this.x);
         let vx = Math.cos(angle), vy = Math.sin(angle);
         let color = "orange";
-        let speed = this.playground.height*0.3/this.playground.scale;
+        let speed = this.playground.height*0.5/this.playground.scale;
         let move_length = this.playground.height*1.5/this.playground.scale;
         let fireball = new FireBall(this.playground,this,x,y,radius,vx,vy,color,speed,move_length, this.playground.height * 0.01 / this.playground.scale);
         this.fireballs.push(fireball);
@@ -354,6 +354,12 @@ class Player extends AcGameObject {
             this.ctx.fillStyle = "rgba(0, 0, 255, 0.6)";
             this.ctx.fill();
         }
+        
+        this.ctx.font = "oblique small-caps normal 3vh Arial";
+        this.ctx.fillStyle = "orange";
+        this.ctx.fillText("Q", this.playground.width * 0.83, this.playground.height * 0.9);
+        this.ctx.fillStyle = "cyan";
+        this.ctx.fillText("F", this.playground.width * 0.9, this.playground.height * 0.9);
     }
 
 }

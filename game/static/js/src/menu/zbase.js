@@ -20,9 +20,14 @@ class WeGameMenu {
 `);
         this.$menu.hide();
         this.root.$ac_game.append(this.$menu);
+        
+        let world_chat_field = new World_ChatField(this);
+
+
         this.$single = this.$menu.find('.ac-game-menu-field-single');
         this.$multi = this.$menu.find('.ac-game-menu-field-multi');
         this.$settings = this.$menu.find('.ac-game-menu-field-settings');
+
 
         this.start();
     }

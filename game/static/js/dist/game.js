@@ -1,3 +1,72 @@
+class World_ChatField {
+    constructor(menu) {
+        this.menu = menu;
+
+        this.$title = $(`<div class="ac-game-world-chat-field-title">世界之窗</div>`);
+        this.$history = $(`<div class="ac-game-world-chat-field-history">暂时存在通讯异常，不定期维护</div>`);
+        this.$input = $(`<input type="text" class="ac-game-world-chat-field-input">`);
+
+
+        this.menu.$menu.append(this.$title);
+        this.menu.$menu.append(this.$history);
+        this.menu.$menu.append(this.$input);
+
+        this.start();
+    }
+
+    start() {
+        this.add_listening_events();
+    }
+
+    add_listening_events() {
+        let outer = this;
+
+        this.$input.keydown(function(e) {
+            if (e.which === 13) { //Enter回车键
+                let username = outer.menu.root.settings.username;
+                let text = outer.$input.val();
+                if (text) {
+                    outer.$input.val("");
+                    outer.add_message(username,text);
+                    outer.menu.root.playground.mps.send_message(username,text);
+                }
+                return false;
+            }
+        });
+    }
+
+
+    render_message(message) {
+        return $(`<div>${message}</div>`);
+    }
+
+    add_message(username, text) {
+        let message = `[${username}]${text}`;
+        this.$history.append(this.render_message(message));
+        this.$history.scrollTop(this.$history[0].scrollHeight);
+    }
+
+    
+    always_show_history() {
+        this.$history.fadeIn();
+    }
+
+
+    show_input() {
+        this.always_show_history();
+
+        this.$input.show();
+        this.$input.focus(); //聚焦输入框
+    }
+
+    hide_input() {
+        this.hide_history();
+        this.$input.hide();
+        this.playground.game_map.$canvas.focus(); //重新聚焦地图
+    }
+
+
+}
 class WeGameMenu {
     constructor(root) {
         this.root = root;
@@ -20,9 +89,14 @@ class WeGameMenu {
 `);
         this.$menu.hide();
         this.root.$ac_game.append(this.$menu);
+        
+        let world_chat_field = new World_ChatField(this);
+
+
         this.$single = this.$menu.find('.ac-game-menu-field-single');
         this.$multi = this.$menu.find('.ac-game-menu-field-multi');
         this.$settings = this.$menu.find('.ac-game-menu-field-settings');
+
 
         this.start();
     }
@@ -363,7 +437,7 @@ class Player extends AcGameObject {
         if (this.character === "me") {
             this.fireball_coldtime = 3; //冷却时间3s
             this.fireball_img = new Image();
-            this.fireball_img.src = "https://cdn.acwing.com/media/article/image/2021/12/02/1_9340c86053-fireball.png";
+            this.fireball_img.src = "https://exp-picture.cdn.bcebos.com/a1780d1fceecd3d9a02a317767995943050108f7.jpg?x-bce-process=image%2Fformat%2Cf_jpg%2Fquality%2Cq_80";
 
             this.blink_coldtime = 5;  // 单位：秒
             this.blink_img = new Image();
@@ -475,7 +549,7 @@ class Player extends AcGameObject {
         let angle = Math.atan2(ty - this.y,tx - this.x);
         let vx = Math.cos(angle), vy = Math.sin(angle);
         let color = "orange";
-        let speed = this.playground.height*0.3/this.playground.scale;
+        let speed = this.playground.height*0.5/this.playground.scale;
         let move_length = this.playground.height*1.5/this.playground.scale;
         let fireball = new FireBall(this.playground,this,x,y,radius,vx,vy,color,speed,move_length, this.playground.height * 0.01 / this.playground.scale);
         this.fireballs.push(fireball);
@@ -682,6 +756,12 @@ class Player extends AcGameObject {
             this.ctx.fillStyle = "rgba(0, 0, 255, 0.6)";
             this.ctx.fill();
         }
+        
+        this.ctx.font = "oblique small-caps normal 3vh Arial";
+        this.ctx.fillStyle = "orange";
+        this.ctx.fillText("Q", this.playground.width * 0.83, this.playground.height * 0.9);
+        this.ctx.fillStyle = "cyan";
+        this.ctx.fillText("F", this.playground.width * 0.9, this.playground.height * 0.9);
     }
 
 }
@@ -741,8 +821,12 @@ class ScoreBoard extends AcGameObject {
         let len = this.playground.height / 2;
         if(this.state === "win" ) {
             this.ctx.drawImage(this.win_img, this.playground.width/2 - len/2, this.playground.height/2 - len/2, len, len);
+            this.ctx.fillStyle = "white";
+            this.ctx.fillText("左键返回主界面",this.playground.width*0.5,this.playground.height*0.75);
         } else if (this.state === "lose" ) {
             this.ctx.drawImage(this.lose_img, this.playground.width/2 - len/2, this.playground.height/2 - len/2, len, len);
+            this.ctx.fillStyle = "white";
+            this.ctx.fillText("左键返回主界面",this.playground.width*0.5,this.playground.height*0.75);
         }
     }
 }
